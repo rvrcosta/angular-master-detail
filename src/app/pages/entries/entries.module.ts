@@ -1,6 +1,7 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+
+import { SharedModule } from '../../shared/shared.module';
+
 import { CalendarModule } from 'primeng/calendar';
 
 import { EntriesRoutingModule } from './entries-routing.module';
@@ -18,12 +19,10 @@ import { IMaskModule } from 'angular-imask';
     EntryFormComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     EntriesRoutingModule,
-    ReactiveFormsModule,
     IMaskModule,
     CalendarModule,
-
   ],
   providers:[
     {provide: LOCALE_ID, useValue:'pt-BR'}
