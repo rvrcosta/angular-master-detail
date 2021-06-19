@@ -22,26 +22,26 @@ export class EntryService extends BaseResourceService<Entry> {
 
    create(entry: Entry):Observable<Entry>{
 
-    return this.categoryService.getById(entry.categoryId).pipe(
-      mergeMap(category => {
-        entry.category = category;
-
-        return super.create(entry);
-      })
-    );
+    return this.setCategoryAndSendtoServer(entry, super.create.bind(this))
    }
 
    update(entry: Entry):Observable<Entry>{
 
-    return this.categoryService.getById(entry.categoryId).pipe(
-      mergeMap(category => {
+    return this.setCategoryAndSendtoServer(entry, super.update.bind(this))
 
-        entry.category = category;
 
-        return super.update(entry);
-      })
-    );
    }
 
+   private setCategoryAndSendtoServer(entry: Entry, sendFn: any):Observable<Entry>{
+
+    return this.categoryService.getById(entry.categoryId).pipe(
+      mergeMap(category => {
+        entry.category = category;
+        return sendFn(entry);
+      }),
+      catchError(this.handleError)
+    );
+
+   }
 
 }
