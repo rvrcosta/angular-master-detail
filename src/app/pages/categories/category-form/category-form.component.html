@@ -19,25 +19,18 @@
         <div class="form-group col-md-4">
           <label for="name">Nome</label>
           <input type="text" class="form-control" id="name" formControlName="name" >
-          <div class="text-danger" *ngIf="resourceForm.get('name').invalid && resourceForm.get('name').touched">
-            <div *ngIf="resourceForm.get('name').errors.required">Dado obrigatório</div>
-            <div *ngIf="resourceForm.get('name').errors.minlength">Deve conter no minimo 2 caracteres</div>
-          </div>
+          <app-form-field-error [form-control]="resourceForm.get('name')"></app-form-field-error>
         </div>
         <div class="form-group col-md-8">
           <label for="description">Descrição</label>
           <input type="text" class="form-control" id="description" formControlName="description">
+          <app-form-field-error [form-control]="resourceForm.get('description')"></app-form-field-error>
         </div>
       </div>
     </div>
   </div>
 
-    <div class="alert alert-danger" *ngIf="serveErrorMessages">
-      <strong>Erro no servidor</strong>
-      <ul>
-        <li *ngForm="let error of serveErrorMessages">{{error}}</li>
-      </ul>
-    </div>
+  <app-server-error-messages [server-error-messages]="serveErrorMessages"></app-server-error-messages>
 
   <button type="submit" [disabled]="submittingForm || resourceForm.invalid" class="btn btn-primary btn-lg float-end mt-3">Salvar</button>
 </form>

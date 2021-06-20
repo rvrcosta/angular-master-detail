@@ -1,0 +1,6 @@
+<div class="alert alert-danger" *ngIf="serverErrorMessages">
+  <strong>Erro no servidor</strong>
+  <ul>
+    <li *ngForm="let error of serverErrorMessages">{{error}}</li>
+  </ul>
+</div>
