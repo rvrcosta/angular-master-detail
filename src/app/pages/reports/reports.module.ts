@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 
 import { ReportsRoutingModule } from './reports-routing.module';
-
+import { ChartModule } from 'primeng/chart'
 
 @NgModule({
   declarations: [
@@ -13,6 +13,8 @@ import { ReportsRoutingModule } from './reports-routing.module';
   imports: [
     SharedModule,
     ReportsRoutingModule,
+    ChartModule,
+
   ],
   exports:[
 
